@@ -1,0 +1,38 @@
+{
+    "name": "zenapply/laravel-upload",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Tyler Arbon",
+            "email": "tylercd100@gmail.com"
+        }
+    ],
+    "description": "",
+    "keywords": [
+        "laravel",
+        "upload",
+        "tylercd100",
+        "zenapply"
+    ],
+    "homepage": "https://github.com/zenapply/laravel-upload",
+    "license": "MIT",  
+    "autoload":{
+        "psr-4":{
+            "Zenapply\\Upload\\":"src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zenapply\\Upload\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "orchestra/testbench": "^3.2"
+    },
+    "suggest": {
+    }
+}
