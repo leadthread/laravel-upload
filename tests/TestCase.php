@@ -1,6 +1,6 @@
 <?php
 
-namespace Zenapply\Viddler\Tests;
+namespace Zenapply\Upload\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -24,7 +24,7 @@ class TestCase extends Orchestra
      */
     protected function getPackageProviders($app)
     {
-        return ['Zenapply\Viddler\Providers\ServiceProvider'];
+        return ['Zenapply\Upload\Providers\Upload'];
     }
 
     /**
@@ -33,7 +33,7 @@ class TestCase extends Orchestra
     protected function getPackageAliases($app)
     {
         return [
-            'Viddler' => 'Zenapply\Viddler\Facades\Viddler'
+            'Upload' => 'Zenapply\Upload\Facades\Upload'
         ];
     }
 
@@ -45,7 +45,9 @@ class TestCase extends Orchestra
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('upload', []);
+        $app['config']->set('upload', [
+            'disk'=>'test'
+        ]);
     }
 
     /**
