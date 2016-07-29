@@ -19,7 +19,7 @@ class Upload extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../config/upload.php' => base_path('config/upload.php'),
-            __DIR__ . '/../../migrations/2016_07_28_000000_create_uploads_tables.php' => base_path('migrations/2016_07_28_000000_create_uploads_tables.php'),
+            __DIR__ . '/../../migrations/2016_07_28_000000_create_uploads_tables.php' => base_path('database/migrations/2016_07_28_000000_create_uploads_tables.php'),
 
         ]);   
     }
