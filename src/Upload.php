@@ -8,6 +8,9 @@ use Exception;
 use Zenapply\Upload\Models\File;
 
 class Upload {
+
+	protected $config = [];
+	
 	public function __construct(){
 		$this->config = config('upload');
 		
