@@ -2,16 +2,16 @@
 
 namespace Zenapply\Upload\Providers;
 
-use Illuminate\Support\ServiceProvider as Provider;
-use Zenapply\Upload\Upload;
+use Illuminate\Support\ServiceProvider;
+use Zenapply\Upload\Upload as UploadMaster;
 
-class ServiceProvider extends Provider
+class Upload extends ServiceProvider
 {
     public function register() {
         $this->mergeConfigFrom(__DIR__ . '/../../config/upload.php', 'upload');
 
         $this->app->singleton('upload', function() {
-            return new Upload;
+            return new UploadMaster;
         });
     }
 

@@ -8,6 +8,7 @@ class File extends Model
 {
 	protected $table = 'files';
 
+
 // [
 // 	'mime'
 // 	'path'
