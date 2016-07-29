@@ -5,6 +5,7 @@ namespace Zenapply\Upload;
 use Illuminate\Http\UploadedFile;
 use Storage;
 use Exception;
+use Zenapply\Upload\Models\File;
 
 class Upload {
 	public function __construct(){
@@ -13,17 +14,32 @@ class Upload {
 	}
 
 	public function create(UploadedFile $file){
-		$filename   = $this->getRandomString(32);
-		$extension  = $file->extension();
-		$directory  = $this->getRandomDirectory();
+		$disk        = $this->config['disk'];
+		$filename    = $this->getRandomString(32);
+		$extension   = $file->extension();
+		$directory   = $this->getRandomDirectory();
+		$contents    = file_get_contents($file);
+		$mime        = mime_content_type($file->path());
+		$fingerprint = md5_file($file->path());
 
 		$path = "/{$directory}/{$filename}.{$extension}";
 
-	    $result = $this->getDisk()->put($path, file_get_contents($file));
+	    $result = $this->getDisk()->put($path, $contents);
 
 	    if($result === false){
-	    	throw new Exception("Could not save the file on the disk! Disk: ".$this->config['disk']);
+	    	throw new Exception("Could not save the file on the disk! Disk: ".$disk);
 	    }
+
+	    $model = new File([
+	    	"filename" => $filename,
+	    	"mime" => $mime,
+			"path" => $path,
+			"disk" => $disk,
+			"extension" => $extension,
+			"fingerprint" => $fingerprint,
+	    ]);
+
+	    return $model;
 	}
 
 	public function read($id){

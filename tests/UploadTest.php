@@ -4,9 +4,29 @@ namespace Zenapply\Upload\Tests;
 
 use Zenapply\Upload\Upload;
 use Upload as UploadFacade;
+use Illuminate\Http\UploadedFile;
 
 class UploadTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->migrate();
+    }
+
+    public function tearDown()
+    {
+        $this->migrateReset();
+        parent::tearDown();        
+    }
+
+    public function testUploadCreate(){
+        $obj = new Upload();
+        $file = new UploadedFile(__DIR__."/files/testfile.txt","testfile.txt");
+        $model = $obj->create($file);
+        $this->assertEquals(file_exists(__DIR__.'/tmp'.$model->path),true);
+    }
+    
     public function testItCreatesAnInstanceOfUpload(){
         $obj = new Upload();
         $this->assertInstanceOf(Upload::class,$obj);
