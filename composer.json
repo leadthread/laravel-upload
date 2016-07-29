@@ -28,7 +28,8 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "laravel/framework": "^5.2.41"
+        "laravel/framework": "^5.2.41",
+        "league/flysystem": "^1.0.25"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
