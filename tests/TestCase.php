@@ -45,7 +45,7 @@ class TestCase extends Orchestra
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('viddler', []);
+        $app['config']->set('upload', []);
     }
 
     /**
