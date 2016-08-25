@@ -18,20 +18,32 @@ class Upload
 
     public function create(UploadedFile $file)
     {
-        $disk        = $this->config['disk'];
-        $filename    = $this->getRandomString(32);
-        $extension   = $file->extension();
-        $directory   = $this->getRandomDirectory();
-        $contents    = file_get_contents($file);
-        $mime        = mime_content_type($file->path());
         $fingerprint = md5_file($file->path());
 
-        $path = "/{$directory}/{$filename}.{$extension}";
+        $duplicate = File::where('fingerprint', $fingerprint)->first();
+        
+        if (!$duplicate) {
+            $disk        = $this->config['disk'];
+            $filename    = $this->getRandomString(32);
+            $extension   = $file->extension();
+            $directory   = $this->getRandomDirectory();
+            $contents    = file_get_contents($file);
+            $mime        = mime_content_type($file->path());
 
-        $result = $this->getDisk()->put($path, $contents);
+            $path = "/{$directory}/{$filename}.{$extension}";
 
-        if ($result === false) {
-            throw new Exception("Could not save the file on the disk! Disk: ".$disk);
+            $result = $this->getDisk()->put($path, $contents);
+
+            if ($result === false) {
+                throw new Exception("Could not save the file on the disk! Disk: ".$disk);
+            }
+        } else {
+            $filename = $duplicate->filename;
+            $mime = $duplicate->mime;
+            $path = $duplicate->path;
+            $disk = $duplicate->disk;
+            $extension = $duplicate->extension;
+            $fingerprint = $duplicate->fingerprint;
         }
 
         $model = new File(
