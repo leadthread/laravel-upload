@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateUploadsTables extends Migration {
+class CreateUploadsTables extends Migration
+{
 
     /**
      * Run the migrations.
@@ -12,7 +13,7 @@ class CreateUploadsTables extends Migration {
      */
     public function up()
     {
-        Schema::create(config('upload.table'), function(Blueprint $table) {
+        Schema::create(config('upload.table'), function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('mime');
             $table->string('path');
@@ -33,5 +34,4 @@ class CreateUploadsTables extends Migration {
     {
         Schema::drop(config('upload.table'));
     }
-
 }

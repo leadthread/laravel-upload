@@ -37,42 +37,53 @@ class TestCase extends Orchestra
         ];
     }
 
-    protected function migrate(){
-        $this->artisan('migrate', [
+    protected function migrate()
+    {
+        $this->artisan(
+            'migrate', [
             '--database' => 'testbench',
-            '--realpath' => realpath(__DIR__.'/migrations'),
-        ]);
+            '--realpath' => realpath(__DIR__.'/../migrations'),
+            ]
+        );
     }
 
-    protected function migrateReset(){
+    protected function migrateReset()
+    {
         $this->artisan('migrate:reset');
     }
 
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param  \Illuminate\Foundation\Application $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('upload', [
+        $app['config']->set(
+            'upload', [
+            'table' => 'uploads',
             'disk'=>'test'
-        ]);
+            ]
+        );
 
         $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
+        $app['config']->set(
+            'database.connections.testbench', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
             'prefix'   => '',
-        ]);
+            ]
+        );
 
-        $app['config']->set('filesystems.disks', [
+        $app['config']->set(
+            'filesystems.disks', [
             'test' => [
                 'driver' => 'local',
                 'root'   => __DIR__.'/tmp',
             ],
-        ]);
+            ]
+        );
     }
 
     /**
