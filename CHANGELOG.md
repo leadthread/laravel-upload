@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-upload` will be documented in this file.
 
+### 1.0.1
+- Fixed return the same DB entry for a duplicate file instead of creating a new one
+
 ### 1.0.0
 - Using this in production now.
 - Added a storage saving method by only writing the file to the disk if it has a unique MD5.

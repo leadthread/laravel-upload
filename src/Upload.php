@@ -22,28 +22,23 @@ class Upload
 
         $duplicate = File::where('fingerprint', $fingerprint)->first();
         
-        if (!$duplicate) {
-            $disk        = $this->config['disk'];
-            $filename    = $this->getRandomString(32);
-            $extension   = $file->extension();
-            $directory   = $this->getRandomDirectory();
-            $contents    = file_get_contents($file);
-            $mime        = mime_content_type($file->path());
+        if ($duplicate) {
+            return $duplicate;
+        }
+    
+        $disk        = $this->config['disk'];
+        $filename    = $this->getRandomString(32);
+        $extension   = $file->extension();
+        $directory   = $this->getRandomDirectory();
+        $contents    = file_get_contents($file);
+        $mime        = mime_content_type($file->path());
 
-            $path = "/{$directory}/{$filename}.{$extension}";
+        $path = "/{$directory}/{$filename}.{$extension}";
 
-            $result = $this->getDisk()->put($path, $contents);
+        $result = $this->getDisk()->put($path, $contents);
 
-            if ($result === false) {
-                throw new Exception("Could not save the file on the disk! Disk: ".$disk);
-            }
-        } else {
-            $filename = $duplicate->filename;
-            $mime = $duplicate->mime;
-            $path = $duplicate->path;
-            $disk = $duplicate->disk;
-            $extension = $duplicate->extension;
-            $fingerprint = $duplicate->fingerprint;
+        if ($result === false) {
+            throw new Exception("Could not save the file on the disk! Disk: ".$disk);
         }
 
         $model = new File(
