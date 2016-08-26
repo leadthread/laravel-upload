@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-upload` will be documented in this file.
 
+### 1.0.3
+- Fix tests for Laravel 5.2
+
 ### 1.0.2
 - Fixed Laravel 5.3 bug with migrations
 
