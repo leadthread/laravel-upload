@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-upload` will be documented in this file.
 
+### 1.0.2
+- Fixed Laravel 5.3 bug with migrations
+
 ### 1.0.1
 - Fixed return the same DB entry for a duplicate file instead of creating a new one
 
