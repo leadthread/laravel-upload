@@ -1,7 +1,14 @@
 <?php
 
 return [
+    /*
+     * The filesystem disk to use
+     */
     'disk' => 'local',
+
+    /*
+     * The table name to use
+     */
     'table' => 'uploads',
 
     /*
