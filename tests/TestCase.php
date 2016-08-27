@@ -50,7 +50,7 @@ class TestCase extends Orchestra
         $version = $this->app->version();
         $version = explode(".", $version);
 
-        if ($version[0] === '5' && intval($version[1]) >= 3) {
+        if (intval($version[0]) >= 5 && intval($version[1]) >= 3) {
             $this->artisan('migrate:reset', [
                 '--database' => 'testbench',
                 '--realpath' => realpath(__DIR__.'/../migrations'),
@@ -72,7 +72,11 @@ class TestCase extends Orchestra
     {
         $app['config']->set('upload', [
             'table' => 'uploads',
-            'disk'=>'test'
+            'disk'=>'test',
+            'hash'=> [
+                'algo' => 'md5',
+                'enabled' => true,
+            ]
         ]);
 
         $app['config']->set('database.default', 'testbench');

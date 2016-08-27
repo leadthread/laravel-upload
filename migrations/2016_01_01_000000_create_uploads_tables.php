@@ -20,7 +20,7 @@ class CreateUploadsTables extends Migration
             $table->string('disk');
             $table->string('filename');
             $table->string('extension');
-            $table->string('fingerprint');
+            $table->string('fingerprint')->unique()->nullable();
             $table->timestamps();
         });
     }

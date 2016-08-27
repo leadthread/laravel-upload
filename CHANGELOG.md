@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-upload` will be documented in this file.
 
+### 1.1.0
+- Can now toggle file hash checking and also change the hashing algorithm.
+
 ### 1.0.3
 - Fix tests for Laravel 5.2
 
