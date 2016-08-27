@@ -14,5 +14,18 @@ Install via [composer](https://getcomposer.org/) - In the terminal:
 composer require zenapply/laravel-upload
 ```
 
+## Usage
+
+To save the file to the disk and database:
+```php
+function upload(Request $request)
+{
+	$file = $request->file('file');
+
+	//Returns an Eloquent Model for the file
+	$model = Upload::create($file);
+}
+```
+
 ## Contributing
 Contributions are always welcome!
