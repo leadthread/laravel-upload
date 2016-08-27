@@ -64,16 +64,6 @@ class Upload
         return $model;
     }
 
-    public function read($id)
-    {
-        // Code go here
-    }
-
-    public function destroy($id)
-    {
-        // Code go here
-    }
-
     /**
      * Returns the storage disk instance to use
      * @return Storage The Storage disk

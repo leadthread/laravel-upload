@@ -5,6 +5,7 @@ namespace Zenapply\Upload\Tests;
 use Zenapply\Upload\Upload;
 use Upload as UploadFacade;
 use Illuminate\Http\UploadedFile;
+use Exception;
 
 class UploadTest extends TestCase
 {
@@ -26,6 +27,53 @@ class UploadTest extends TestCase
         $file = new UploadedFile(__DIR__."/files/testfile.txt", "testfile.txt");
         $model = $obj->create($file);
         $this->assertEquals(file_exists(__DIR__.'/tmp'.$model->path), true);
+        $this->assertNotEquals($model->fingerprint, null);
+    }
+
+    public function testUploadCreateReturnsADuplicate()
+    {
+        $obj = new Upload();
+        
+        $file = new UploadedFile(__DIR__."/files/testfile.txt", "testfile.txt");
+        $model1 = $obj->create($file);
+
+        $file = new UploadedFile(__DIR__."/files/testfile.txt", "testfile.txt");
+        $model2 = $obj->create($file);
+
+        $this->assertEquals($model2->id, $model1->id);
+    }
+
+    public function testUploadCreateDoesNotReturnADuplicate()
+    {
+        config()->set('upload.hash.enabled', false);
+        $obj = new Upload();
+        
+        $file = new UploadedFile(__DIR__."/files/testfile.txt", "testfile.txt");
+        $model1 = $obj->create($file);
+
+        $file = new UploadedFile(__DIR__."/files/testfile.txt", "testfile.txt");
+        $model2 = $obj->create($file);
+
+        $this->assertNotEquals($model2->id, $model1->id);
+    }
+
+    public function testTurningHashingOff()
+    {
+        config()->set('upload.hash.enabled', false);
+        $obj = new Upload();
+        $file = new UploadedFile(__DIR__."/files/testfile.txt", "testfile.txt");
+        $model = $obj->create($file);
+        $this->assertEquals($model->fingerprint, null);
+    }
+
+    public function testUsingUnsupportedAlgorithm()
+    {
+        $this->setExpectedException(Exception::class);
+        config()->set('upload.hash.algo', 'notsupportedalgo');
+        $obj = new Upload();
+        $file = new UploadedFile(__DIR__."/files/testfile.txt", "testfile.txt");
+        $model = $obj->create($file);
+        $this->assertEquals($model->fingerprint, null);
     }
     
     public function testItCreatesAnInstanceOfUpload()
