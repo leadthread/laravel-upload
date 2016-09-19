@@ -14,6 +14,26 @@ Install via [composer](https://getcomposer.org/) - In the terminal:
 composer require zenapply/laravel-upload
 ```
 
+Now add the following to the `providers` array in your `config/app.php`
+```php
+Zenapply\Upload\Providers\Upload::class
+```
+
+and this to the `aliases` array in `config/app.php`
+```php
+"Upload" => "Zenapply\Upload\Facades\Upload",
+```
+
+Then you will need to run these commands in the terminal in order to copy the config and migration files
+```bash
+php artisan vendor:publish --provider="Zenapply\Upload\Providers\Upload"
+```
+
+Before you run the migration you may want to take a look at `config/upload.php` and change the `table` property to a table name that you would like to use. After that run the migration 
+```bash
+php artisan migrate
+```
+
 ## Usage
 
 To save the file to the disk and database:
