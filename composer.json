@@ -1,5 +1,5 @@
 {
-    "name": "zenapply/laravel-upload",
+    "name": "leadthread/laravel-upload",
     "type": "library",
     "authors": [
         {
@@ -12,18 +12,18 @@
         "laravel",
         "upload",
         "tylercd100",
-        "zenapply"
+        "leadthread"
     ],
-    "homepage": "https://github.com/zenapply/laravel-upload",
+    "homepage": "https://github.com/leadthread/laravel-upload",
     "license": "MIT",  
     "autoload":{
         "psr-4":{
-            "Zenapply\\Upload\\":"src/"
+            "LeadThread\\Upload\\":"src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Zenapply\\Upload\\Tests\\": "tests/"
+            "LeadThread\\Upload\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",

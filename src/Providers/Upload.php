@@ -1,9 +1,9 @@
 <?php
 
-namespace Zenapply\Upload\Providers;
+namespace LeadThread\Upload\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Zenapply\Upload\Upload as UploadMaster;
+use LeadThread\Upload\Upload as UploadMaster;
 
 class Upload extends ServiceProvider
 {

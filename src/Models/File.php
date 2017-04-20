@@ -1,6 +1,6 @@
 <?php
 
-namespace Zenapply\Upload\Models;
+namespace LeadThread\Upload\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

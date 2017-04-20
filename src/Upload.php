@@ -1,11 +1,11 @@
 <?php
 
-namespace Zenapply\Upload;
+namespace LeadThread\Upload;
 
 use Illuminate\Http\UploadedFile;
 use Storage;
 use Exception;
-use Zenapply\Upload\Models\File;
+use LeadThread\Upload\Models\File;
 
 class Upload
 {

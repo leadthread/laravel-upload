@@ -1,8 +1,8 @@
 <?php
 
-namespace Zenapply\Upload\Tests;
+namespace LeadThread\Upload\Tests;
 
-use Zenapply\Upload\Upload;
+use LeadThread\Upload\Upload;
 use Upload as UploadFacade;
 use Illuminate\Http\UploadedFile;
 use Exception;

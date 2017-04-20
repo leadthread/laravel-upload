@@ -1,6 +1,6 @@
 <?php
 
-namespace Zenapply\Upload\Tests;
+namespace LeadThread\Upload\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -24,7 +24,7 @@ class TestCase extends Orchestra
      */
     protected function getPackageProviders($app)
     {
-        return ['Zenapply\Upload\Providers\Upload'];
+        return ['LeadThread\Upload\Providers\Upload'];
     }
 
     /**
@@ -33,7 +33,7 @@ class TestCase extends Orchestra
     protected function getPackageAliases($app)
     {
         return [
-            'Upload' => 'Zenapply\Upload\Facades\Upload'
+            'Upload' => 'LeadThread\Upload\Facades\Upload'
         ];
     }
 

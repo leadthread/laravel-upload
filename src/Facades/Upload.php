@@ -1,6 +1,6 @@
 <?php
 
-namespace Zenapply\Upload\Facades;
+namespace LeadThread\Upload\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
