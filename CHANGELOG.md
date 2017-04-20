@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-upload` will be documented in this file.
 
+### 2.0.0
+- Changed ownership from zenapply to leadthread
+- Namespace changes
+
 ### 1.1.0
 - Can now toggle file hash checking and also change the hashing algorithm.
 
